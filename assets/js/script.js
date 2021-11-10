@@ -33,7 +33,7 @@ const statusText = document.querySelector('.message-container')
                 headsPercent.textContent = Math.round((headsCount/total) * 100)+ '%'
                 tailsPercent.textContent = Math.round((tailsCount/total) * 100) + '%' 
             }
-            statusText.textContent = 'You Rolled Heads'
+            statusText.textContent = 'You Flipped Heads'
             pennyImg.src = './assets/images/penny-heads.jpg'
         }
         else{//Tails was flipped
@@ -44,7 +44,7 @@ const statusText = document.querySelector('.message-container')
                 headsPercent.textContent = Math.round((headsCount/total) * 100)+ '%'
                 tailsPercent.textContent = Math.round((tailsCount/total) * 100) + '%' 
             }
-            statusText.textContent = 'You Rolled Tails'
+            statusText.textContent = 'You Flipped Tails'
             pennyImg.src = './assets/images/penny-tails.jpg'
 
          }
