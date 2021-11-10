@@ -7,7 +7,7 @@ body {
 
 body {
     min-height: 100vh;
-    background: linear-gradient(to bottom left, orange, white);
+    background: linear-gradient(to bottom left, green, white);
 }
 
 main {
@@ -28,7 +28,7 @@ h1 {
 }
 
 .message-container {
-    color: darkorange;
+    color: red;
     font-size: 1.5em;
     font-weight: bold;
 }
@@ -61,7 +61,7 @@ button {
 table, 
 th, 
 td {
-    border: 1px solid darkorange;
+    border: 1px solid red;
     margin: 0 auto;
 }
 

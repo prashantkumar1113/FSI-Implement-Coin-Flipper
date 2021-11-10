@@ -1,54 +1,33 @@
 // TODO: Declare any global variables we need
-let headsCount = 0
-let tailsCount = 0
-let total = 0
-
-const pennyImg = document.querySelector('img')
-const headsText = document.getElementById('heads')
-const headsPercent = document.getElementById('heads-percent')
-const tailsText = document.getElementById('tails')
-const tailsPercent = document.getElementById('tails-percent')
-const statusText = document.querySelector('.message-container')
+const diceImg = document.querySelector('img')
+let diceCounts = [0,0,0,0,0,0]
+let dicePercents = [0,0,0,0,0,0]
+let total= 0
 
     // TODO: Add event listener and handler for flip and clear buttons
     
     // Flip Button Click Handler
     // TODO: Determine flip outcome
     // TODO: Update image and status message in the DOM
-    const flipButton = document.getElementById('flip')
+    const flipButton = document.getElementById('roll')
     flipButton.addEventListener('click', function(e){
-        let pennyFlip = Math.random() < 0.5
-        //console.log(pennyFlip)
-        if(pennyFlip){ //Heads was flipped
-            // Update the scorboard
-            // TODO: Calculate the total number of rolls/flips
-            // Make variables to track the percentages of heads and tails
-            // TODO: Use the calculated total to calculate the percentages
-            // HINT: Make sure not to divide by 0! (if total is 0, percent will be 0 as well)
-            // TODO: Update the display of each table cell
-            headsCount++
-            total++
-            headsText.textContent = headsCount
-            if(total > 0){
-                headsPercent.textContent = Math.round((headsCount/total) * 100)+ '%'
-                tailsPercent.textContent = Math.round((tailsCount/total) * 100) + '%' 
-            }
-            statusText.textContent = 'You Flipped Heads'
-            pennyImg.src = './assets/images/penny-heads.jpg'
-        }
-        else{//Tails was flipped
-            tailsCount++
-            total++
-            tailsText.textContent = tailsCount
-            if(total > 0){
-                headsPercent.textContent = Math.round((headsCount/total) * 100)+ '%'
-                tailsPercent.textContent = Math.round((tailsCount/total) * 100) + '%' 
-            }
-            statusText.textContent = 'You Flipped Tails'
-            pennyImg.src = './assets/images/penny-tails.jpg'
-
-         }
+        let rolledValue = Math.ceil(Math.random() * 6)
+        let indexValue = rolledValue-1;
+        diceImg.src = `./assets/images/dice/dice${rolledValue}.png`
+        //console.log(`Rolled value: ${rolledValue}, Index value: ${indexValue}`)
         
+        diceCounts[indexValue]++
+        total++
+        
+        for(let i = 0; i < dicePercents.length; i++){
+            dicePercents[i] = Math.round((diceCounts[i]/total) * 100)+ '%'
+            let queryString = `td${i+1}-percent`
+            document.getElementById(queryString).textContent = dicePercents[i]
+            //console.log( queryString )
+        }
+        
+        let queryString = `td${rolledValue}`
+        document.getElementById(queryString).textContent = diceCounts[indexValue]
     })
 
     // Clear Button Click Handler
@@ -56,13 +35,13 @@ const statusText = document.querySelector('.message-container')
     // TODO: Update the scoreboard (same logic as in flip button click handler)
     const resetButton = document.getElementById('clear')
     resetButton.addEventListener('click', function(e){
-        headsCount = 0
-        tailsCount = 0
         total = 0
-        headsText.textContent = headsCount
-        headsPercent.textContent = 0 + '%'
-        tailsText.textContent = tailsCount
-        tailsPercent.textContent = 0 + '%' 
-        statusText.textContent = 'Let\'s Get Rolling!'
-        pennyImg.src = './assets/images/penny-heads.jpg'
+        for(let i = 0; i < diceCounts.length; i++){
+            diceCounts[i] = 0
+            dicePercents[i] = 0
+            let queryString = `td${i+1}`
+            document.getElementById(queryString).textContent = '0'
+            queryString = `${queryString}-percent`
+            document.getElementById(queryString).textContent = '0%'
+        }
     })
