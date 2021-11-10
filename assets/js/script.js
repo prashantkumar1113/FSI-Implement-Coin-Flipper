@@ -1,5 +1,6 @@
 // TODO: Declare any global variables we need
 const diceImg = document.querySelector('img')
+const message = document.querySelector('.message-container')
 let diceCounts = [0,0,0,0,0,0]
 let dicePercents = [0,0,0,0,0,0]
 let total= 0
@@ -14,6 +15,7 @@ let total= 0
         let rolledValue = Math.ceil(Math.random() * 6)
         let indexValue = rolledValue-1;
         diceImg.src = `./assets/images/dice/dice${rolledValue}.png`
+        message.textContent = `You Rolled a ${rolledValue}`
         //console.log(`Rolled value: ${rolledValue}, Index value: ${indexValue}`)
         
         diceCounts[indexValue]++
@@ -36,6 +38,7 @@ let total= 0
     const resetButton = document.getElementById('clear')
     resetButton.addEventListener('click', function(e){
         total = 0
+        message.textContent = 'Let\'s Get Rolling!'
         for(let i = 0; i < diceCounts.length; i++){
             diceCounts[i] = 0
             dicePercents[i] = 0
