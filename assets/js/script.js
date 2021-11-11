@@ -46,5 +46,7 @@ let total= 0
             document.getElementById(queryString).textContent = '0'
             queryString = `${queryString}-percent`
             document.getElementById(queryString).textContent = '0%'
+            diceImg.src = `./assets/images/dice/dice1.png`
+
         }
     })
